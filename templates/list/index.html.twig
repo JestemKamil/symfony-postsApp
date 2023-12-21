@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista{% endblock %}
+
+{% block body %}
+
+{# $data is sent from backend, make table with DELETE button with it. Rows: id, first_name, last_name, title, body #}
+
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>first_name</th>
+            <th>last_name</th>
+            <th>title</th>
+            <th>body</th>
+            <th>DELETE</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+        <tr>
+            <th>{{ row.id }}</th>
+            <td>{{ row.first_name }}</td>
+            <td>{{ row.last_name }}</td>
+            <td>{{ row.title }}</td>
+            <td>{{ row.body }}</td>
+            <td>
+                <form action="/list" method="get">
+                    <input type="hidden" name="id" value="{{ row.id }}">
+                    <button type="submit">DELETE</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+{% endblock %}
